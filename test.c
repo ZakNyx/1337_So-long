@@ -3,6 +3,37 @@
 int x;
 int y;
 
+int	window_width(void)
+{
+	t_vars vars;
+	
+	vars.fd = open("./maps/map.ber", O_RDONLY);
+	vars.str = get_next_line(vars.fd);
+	vars.x = 0;
+	vars.y = 0;
+	while (vars.str[vars.x])
+	{
+		vars.y = vars.y + 75;
+		vars.x++;
+	}
+	return (vars.y);
+}
+
+int	window_height(void)
+{
+	t_vars vars;
+	
+	vars.fd = open("./maps/map.ber", O_RDONLY);
+	vars.str = get_next_line(vars.fd);
+	vars.y = 0;
+	while (vars.str != NULL)
+	{
+		vars.y = vars.y + 75;
+		vars.str = get_next_line(vars.fd);
+	}
+	return (vars.y);
+}
+
 void	map_maker(t_vars *vars)
 {
 	int n = 0;
@@ -18,17 +49,11 @@ void	map_maker(t_vars *vars)
 		while(str[i])
 		{
 			if (str[i] == '1')
-			{
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, n, m);
-			}
 			else if (str[i] == '0')
-			{
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
-			}
 			else if (str[i] == 'C')
-			{
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->cimg, n, m);
-			}
 			else if (str[i] == 'P')
 			{
 				if (x == 0 && y == 0)
@@ -39,9 +64,7 @@ void	map_maker(t_vars *vars)
 				mlx_put_image_to_window(vars->mlx, vars->win , vars->img, n, m);
 			}
 			else if (str[i] == 'E')
-			{
 				mlx_put_image_to_window(vars->mlx, vars->win , vars->dimg, n, m);
-			}
 			i++;
 			n += 75;
 		}
@@ -68,21 +91,13 @@ void	map_maker2(t_vars *vars)
 		while(str[i])
 		{
 			if (str[i] == '1')
-			{
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, n, m);
-			}
 			else if (str[i] == '0')
-			{
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
-			}
 			else if (str[i] == 'C')
-			{
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->cimg, n, m);
-			}
 			else if (str[i] == 'E')
-			{
 				mlx_put_image_to_window(vars->mlx, vars->win , vars->dimg, n, m);
-			}
 			i++;
 			n += 75;
 		}
@@ -141,7 +156,9 @@ int	main(void)
 	t_vars	vars;
 
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1500, 1000 , "Have Fun");
+	vars.x = window_width();
+	vars.y = window_height();
+	vars.win = mlx_new_window(vars.mlx, vars.x, vars.y , "Have Fun");
 	vars.img = mlx_xpm_file_to_image(vars.mlx, "./sprites/player.xpm", &vars.x,  &vars.y);
 	vars.gimg = mlx_xpm_file_to_image(vars.mlx, "./sprites/grass.xpm", &vars.x,  &vars.y);
 	vars.wimg = mlx_xpm_file_to_image(vars.mlx, "./sprites/wall.xpm", &vars.x,  &vars.y);

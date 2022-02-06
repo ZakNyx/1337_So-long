@@ -16,12 +16,9 @@ typedef struct	s_vars {
 	void	*gimg;
 	void	*wimg;
 	void	*cimg;
-	void	*path;
-	void	*wpath;
-	void	*gpath;
-	void	*cpath;
-	void	*dpath;
 	int		x,y;
+	int		fd;
+	char	*str;
 }				t_vars;
 
 char    *get_next_line(int  fd);
