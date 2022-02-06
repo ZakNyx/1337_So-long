@@ -31,6 +31,11 @@ void	map_maker(t_vars *vars)
 			}
 			else if (str[i] == 'P')
 			{
+				if (x == 0 && y == 0)
+				{
+					x = n;
+					y = m;
+				}
 				mlx_put_image_to_window(vars->mlx, vars->win , vars->img, n, m);
 			}
 			else if (str[i] == 'E')
@@ -48,6 +53,49 @@ void	map_maker(t_vars *vars)
 	
 }
 
+void	map_maker2(t_vars *vars)
+{
+	int n = 0;
+	int m = 0;
+	int fd = open("./maps/map.ber", O_RDONLY);
+	char *str = get_next_line(fd);
+	int i;
+
+	i = 0;
+	while (str)
+	{
+		puts("im here");
+		while(str[i])
+		{
+			if (str[i] == '1')
+			{
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, n, m);
+			}
+			else if (str[i] == '0')
+			{
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
+			}
+			else if (str[i] == 'C')
+			{
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->cimg, n, m);
+			}
+			else if (str[i] == 'E')
+			{
+				mlx_put_image_to_window(vars->mlx, vars->win , vars->dimg, n, m);
+			}
+			i++;
+			n += 75;
+		}
+		n = 0;
+		m += 75;
+		i = 0;
+		str = get_next_line(fd);
+	}
+	
+}
+
+
+
 int	key_hook(int keycode, t_vars *vars)
 {
 	printf("%d\n", keycode);
@@ -55,28 +103,28 @@ int	key_hook(int keycode, t_vars *vars)
 	{
 		x += 75;
 		mlx_clear_window(vars->mlx, vars->win);
-		map_maker(vars);
+		map_maker2(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win , vars->img, x, y);
 	}
 	if(keycode == 125)
 	{
 		y += 75;
 		mlx_clear_window(vars->mlx, vars->win);
-		map_maker(vars);
+		map_maker2(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win , vars->img, x, y);
 	}
 	if(keycode == 126)
 	{
 		y -= 75;
 		mlx_clear_window(vars->mlx, vars->win);
-		map_maker(vars);
+		map_maker2(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win , vars->img, x, y);
 	}
 	if(keycode == 123)
 	{
 		x -= 75 ;
 		mlx_clear_window(vars->mlx, vars->win);
-		map_maker(vars);
+		map_maker2(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win , vars->img, x, y);
 	}
 	if(keycode == 53)
