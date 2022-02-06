@@ -1,0 +1,17 @@
+right   124
+down    125
+left    123
+up      126
+
+
+	if (keycode == 124)
+	{
+		x += 90;
+		mlx_destroy_image(vars->mlx, vars->img);
+		mlx_put_image_to_window(vars->mlx, vars->win , vars->img, x, y);
+	}
+	if(keycode == 125)
+	{
+		y += 85;
+		mlx_put_image_to_window(vars->mlx, vars->win , vars->img, x, y);
+	}
