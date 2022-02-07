@@ -16,10 +16,14 @@ typedef struct	s_vars {
 	void	*gimg;
 	void	*wimg;
 	void	*cimg;
-	int		x,y;
+	int		x,y,a;
 	int		fd;
 	char	*str;
+	char	**tab;
+	char	**tab2;
+
 }				t_vars;
+
 
 char    *get_next_line(int  fd);
 static size_t	ft_strlen(const char *c);
