@@ -16,6 +16,7 @@ typedef struct	s_vars {
 	void	*gimg;
 	void	*wimg;
 	void	*cimg;
+	void	*limg;
 	int		x,y,a;
 	int		fd;
 	char	*str;
@@ -24,6 +25,7 @@ typedef struct	s_vars {
 
 }				t_vars;
 
+int o, p;
 
 char    *get_next_line(int  fd);
 static size_t	ft_strlen(const char *c);

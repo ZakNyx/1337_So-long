@@ -100,40 +100,76 @@ void	map_maker(t_vars *vars)
 	
 }
 
+char **number();
+
 void	map_maker2(t_vars *vars)
 {
 	int n = 0;
 	int m = 0;
-	int fd = open("./maps/map.ber", O_RDONLY);
-	char *str = get_next_line(fd);
-	int i;
+	int i , j;
 
-	i = 0;
-	while (str)
+	i = 0;	
+	j = 0;
+	if (vars->tab2[0] == NULL)
 	{
-		while(str[i])
+		vars->tab2 = number();
+		while (vars->tab2[j])
 		{
-			if (str[i] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, n, m);
-			else if (str[i] == '0')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
-			else if (str[i] == 'C')
+			while(vars->tab2[j][i])
 			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->cimg, n, m);
+				if (vars->tab2[j][i] == '1')
+					mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, n, m);
+				else if (vars->tab2[j][i] == '0')
+					mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
+				else if (vars->tab2[j][i] == 'C')
+				{
+					mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
+					mlx_put_image_to_window(vars->mlx, vars->win, vars->cimg, n, m);
+				}
+				else if (vars->tab2[j][i] == 'E')
+				{
+					mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
+					mlx_put_image_to_window(vars->mlx, vars->win , vars->dimg, n, m);
+				}
+				i++;
+				n += 75;
 			}
-			else if (str[i] == 'E')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
-				mlx_put_image_to_window(vars->mlx, vars->win , vars->dimg, n, m);
-			}
-			i++;
-			n += 75;
+			n = 0;
+			m += 75;
+			i = 0;
+			j++;
 		}
-		n = 0;
-		m += 75;
-		i = 0;
-		str = get_next_line(fd);
+	}
+	else 
+	{
+		if (o != 0 && p != 0)
+			vars->tab2[o][p] = '0';
+		while (vars->tab2[j])
+			{
+				while(vars->tab2[j][i])
+				{
+					if (vars->tab2[j][i] == '1')
+						mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, n, m);
+					else if (vars->tab2[j][i] == '0')
+						mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
+					else if (vars->tab2[j][i] == 'C')
+					{
+						mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
+						mlx_put_image_to_window(vars->mlx, vars->win, vars->cimg, n, m);
+					}
+					else if (vars->tab2[j][i] == 'E')
+					{
+						mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
+						mlx_put_image_to_window(vars->mlx, vars->win , vars->dimg, n, m);
+					}
+					i++;
+					n += 75;
+				}
+				n = 0;
+				m += 75;
+				i = 0;
+				j++;
+			}
 	}
 	
 }
@@ -235,29 +271,75 @@ char **number()
 	return vars.tab;
 }
 
+int coin_checker(t_vars *vars)
+{
+	int j;
+	int i;
+
+	i = 0;
+	j = 0;
+	while(vars->tab2[j])
+	{
+		while(vars->tab2[j][i])
+		{
+			if(vars->tab2[j][i] == 'C')
+				return(1);
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+	return (0);
+}
 
 int	key_hook(int keycode, t_vars *vars)
 {
+	int  i = 0;
 	if (!vars->tab)
 		vars->tab = number();
-	printf("%s \n", vars->tab[0]);
-	//printf("%d %d\n" , a, b);
 	if (keycode == 124)
 	{
-		if (vars->tab[b][a + 1] != '1')
+		if(vars->tab[b][a + 1] == 'E')
+		{
+			vars->x = coin_checker(vars);
+			if(vars->x == 0)
+				exit(1);
+		}		
+		if (vars->tab[b][a + 1] != '1' && vars->tab[b][a + 1] != 'E')
 		{
 			a++;
+			if(vars->tab[b][a] == 'C')
+			{
+				o = b;
+				p = a;
+			}
+			if(vars->tab[b][a] == 'E')
+				exit(1);
 			mlx_clear_window(vars->mlx, vars->win);
 			map_maker2(vars);
 			x += 75;
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->img, x, y);
 		}
 	}
-	else if(keycode == 125)
+	else if (keycode == 125)
 	{
-		if(vars->tab[b + 1][a] != '1')
+		if(vars->tab[b + 1][a] == 'E')
+		{
+			vars->x = coin_checker(vars);
+			if(vars->x == 0)
+				exit(1);
+		}	
+		if (vars->tab[b + 1][a] != '1' && vars->tab[b + 1][a] != 'E')
 		{
 			b++;
+			if(vars->tab[b][a] == 'C')
+			{
+				puts("j");
+				o = b;
+				p = a;
+			}
+			if(vars->tab[b][a] == 'E')
+				exit(1);
 			mlx_clear_window(vars->mlx, vars->win);
 			map_maker2(vars);
 			y += 75;
@@ -266,30 +348,54 @@ int	key_hook(int keycode, t_vars *vars)
 	}
 	else if(keycode == 126)
 	{
-		if (vars->tab[b - 1][a] != '1')
+		if(vars->tab[b - 1][a] == 'E')
+		{
+			vars->x = coin_checker(vars);
+			if(vars->x == 0)
+				exit(1);
+		}	
+		if (vars->tab[b - 1][a] != '1' && vars->tab[b - 1][a] != 'E')
 		{
 			b--;
+			if(vars->tab[b][a] == 'C')
+			{
+				o = b;
+				p = a;
+			}
+			if(vars->tab[b][a] == 'E')
+				exit(1);
 			mlx_clear_window(vars->mlx, vars->win);
 			map_maker2(vars);
 			y -= 75;
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->img, x, y);
 		}
 	}
-	else  if(keycode == 123)
+	else if(keycode == 123)
 	{
-		if (vars->tab[b][a - 1] != '1')
+		if(vars->tab[b][a - 1] == 'E')
+		{
+			vars->x = coin_checker(vars);
+			if(vars->x == 0)
+				exit(1);
+		}	
+		if (vars->tab[b][a - 1] != '1' && vars->tab[b][a - 1] != 'E')
 		{
 			a--;
+			if(vars->tab[b][a] == 'C')
+			{
+				o = b;
+				p = a;
+			}
+			if(vars->tab[b][a] == 'E' )
+				exit(1);
 			mlx_clear_window(vars->mlx, vars->win);
 			map_maker2(vars);	
 			x -= 75 ;
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->img, x, y);
+			mlx_put_image_to_window(vars->mlx, vars->win, vars->limg, x, y);
 		}
 	}
 	else if(keycode == 53)
-	{
-		exit (1);	
-	}
+		exit (1);
 
 	return 0;
 }
@@ -297,6 +403,7 @@ int	key_hook(int keycode, t_vars *vars)
 void sprites(t_vars *vars)
 {
 	vars->img = mlx_xpm_file_to_image(vars->mlx, "./sprites/player.xpm", &vars->x,  &vars->y);
+	vars->limg = mlx_xpm_file_to_image(vars->mlx, "./sprites/playerleft.xpm", &vars->x,  &vars->y);
 	vars->gimg = mlx_xpm_file_to_image(vars->mlx, "./sprites/grass.xpm", &vars->x,  &vars->y);
 	vars->wimg = mlx_xpm_file_to_image(vars->mlx, "./sprites/wall.xpm", &vars->x,  &vars->y);
 	vars->cimg = mlx_xpm_file_to_image(vars->mlx, "./sprites/coin.xpm", &vars->x,  &vars->y);
