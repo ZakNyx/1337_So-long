@@ -64,7 +64,7 @@ static void	loop(t_map *map, int fd)
 {
 	while (map->s1)
 	{
-		map->b = strlen(map->s1);
+		map->b = ft_strlen(map->s1);
 		if (map->a != map->b)
 		{
 			write (2, "map is not rectangular", 23);
@@ -81,7 +81,7 @@ int	check_map(int fd)
 	t_map	map;
 
 	map.s1 = get_next_line(fd);
-	map.a = strlen(map.s1);
+	map.a = ft_strlen(map.s1);
 	check_1(map.s1);
 	loop(&map, fd);
 	if (map.a != map.b)

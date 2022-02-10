@@ -20,14 +20,19 @@ typedef struct	s_vars {
 	int		x;
 	int		y;
 	int 	a;
+	int		i;
 	int		b;
 	int		fd;
 	char	*str;
 	char	**tab;
 	char	**tab2;
-	int		t;
+	int		n;
 	int		m;
-
+	int		t; //y
+	int		w; //x
+	int		p;
+	int		o;
+	int		s;
 }				t_vars;
 
 typedef struct s_map
@@ -40,15 +45,7 @@ typedef struct s_map
 }		t_map;
 
 
-int o;
-int p;
-int x;
-int y;
-int a;
-int b;
-
 char    *get_next_line(int  fd);
-static size_t	ft_strlen(const char *c);
 static void	ft_strcat(char	*s1, char	*s2);
 char	*ft_strjoin(char *s1, char c);
 static void	ft_strcpy(char	*s1, const char	*s2);
