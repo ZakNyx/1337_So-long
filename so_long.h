@@ -17,6 +17,7 @@ typedef struct	s_vars {
 	void	*wimg;
 	void	*cimg;
 	void	*limg;
+	void	*oimg;
 	int		x;
 	int		y;
 	int 	a;
@@ -33,7 +34,9 @@ typedef struct	s_vars {
 	int		p;
 	int		o;
 	int		s;
-}				t_vars;
+	int		doorx;
+	int		doory; 
+	}				t_vars;
 
 typedef struct s_map
 {
@@ -44,13 +47,18 @@ typedef struct s_map
 	char *s2;
 }		t_map;
 
+int raja, wac;
 
 char    *get_next_line(int  fd);
-static void	ft_strcat(char	*s1, char	*s2);
 char	*ft_strjoin(char *s1, char c);
-static void	ft_strcpy(char	*s1, const char	*s2);
 char	*ft_strdup(const char	*s1);
 int		check_map(int fd);
 size_t	ft_strlen(const char *c);
+void    move_right(t_vars *vars);
+void    move_down(t_vars *vars);
+void    move_up(t_vars *vars);
+void    move_left(t_vars *vars);
+int 	coin_checker(t_vars *vars);
+void    map_maker_macro(char *str, t_vars *vars, int n, int m);
 
 #endif
