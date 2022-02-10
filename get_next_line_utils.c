@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static size_t	ft_strlen(const char *c)
+ size_t	ft_strlen(const char *c)
 {
 	int	i;
 
@@ -11,7 +11,8 @@ static size_t	ft_strlen(const char *c)
 	}
 	return (i);
 }
-static void	ft_strcat(char	*s1, char	*s2)
+
+ void	ft_strcat(char	*s1, char	*s2)
 {
 	int	i;
 	int	j;
