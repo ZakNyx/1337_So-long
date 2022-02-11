@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so-long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/10 19:18:59 by zihirri           #+#    #+#             */
+/*   Updated: 2022/02/11 15:32:47 by zihirri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-int	window_width(void)
+int	window_width(char *s)
 {
 	t_vars vars;
 	
-	vars.fd = open("./maps/map.ber", O_RDONLY);
+	vars.fd = open(s, O_RDONLY);
 	return (check_map(vars.fd));
 }
 
-int	window_height(void)
+int	window_height(char *s)
 {
 	t_vars vars;
 	
-	vars.fd = open("./maps/map.ber", O_RDONLY);
+	vars.fd = open(s, O_RDONLY);
 	vars.str = get_next_line(vars.fd);
 	vars.y = 0;
 	while (vars.str != NULL)
@@ -23,11 +35,11 @@ int	window_height(void)
 	return (vars.y);
 }
 
-int	number_line(void)
+int	number_line(char *s)
 {
 	t_vars vars; 
 
-	vars.fd = open("./maps/map.ber", O_RDONLY);
+	vars.fd = open(s, O_RDONLY);
 	vars.str = get_next_line(vars.fd);
 	vars.x = 0;
 	vars.y = 0;
@@ -40,11 +52,11 @@ int	number_line(void)
 }
 
 
-void	map_maker(t_vars *vars)
+void	map_maker(t_vars *vars, char	*s)
 {
 	int n = 0;
 	int m = 0;
-	int fd = open("./maps/map.ber", O_RDONLY);
+	int fd = open(s, O_RDONLY);
 	char *str = get_next_line(fd);
 	int i;
 
@@ -103,11 +115,11 @@ int        find_position_line(char **tab)
     return 0;
 }
 
-char	**ft_wall(char **tab)
+char	**ft_wall(char **tab, char	*s)
 {
 	t_vars vars;
 
-	vars.fd = open("./maps/map.ber", O_RDONLY);
+	vars.fd = open(s, O_RDONLY);
 	vars.str = get_next_line(vars.fd);
 	vars.x = 0;
 	vars.y = 0;
@@ -130,12 +142,12 @@ char	**ft_wall(char **tab)
 	return tab;
 }
 
-char **number(t_vars *vars)
+char **number(t_vars *vars, char *s)
 {
 
-	vars->fd = open("./maps/map.ber", O_RDONLY);
+	vars->fd = open(s, O_RDONLY);
 	vars->str = get_next_line(vars->fd);
-	vars->x = number_line();
+	vars->x = number_line(s);
 	vars->y = 0;
 	vars->tab = malloc(sizeof(char *) * (vars->x + 1));
 	while(vars->str)
@@ -145,7 +157,7 @@ char **number(t_vars *vars)
 		vars->str = get_next_line(vars->fd);
 		vars->y++;
 	}	
-	ft_wall(vars->tab);
+	ft_wall(vars->tab, s);
 	if (vars->n == 0 && vars->s == 0)
 	{
 		vars->n = find_position_index(vars->tab);
@@ -178,8 +190,6 @@ int coin_checker(t_vars *vars)
 int	key_hook(int keycode, t_vars *vars)
 {
 	int  i = 0;
-	if (vars->o == 0)
-		vars->tab = number(vars);
 	if (vars->o != 0 && vars->p != 0)
 		vars->tab[vars->o][vars->p] = '0';
 	if (keycode == 124)
@@ -211,13 +221,12 @@ int	main(int ac, char **av)
 	t_vars	vars;
 
 	vars.mlx = mlx_init();
-	vars.x = window_width() * 75;
-	vars.y = window_height();
+	vars.x = window_width(av[1]) * 75;
+	vars.y = window_height(av[1]);
 	vars.win = mlx_new_window(vars.mlx, vars.x, vars.y , "Have Fun");
 	sprites(&vars);
-	map_maker(&vars);
-
-
+	map_maker(&vars, av[1]);
+	vars.tab = number(&vars, av[1]);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_loop(vars.mlx);
 }   

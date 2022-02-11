@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/10 19:19:02 by zihirri           #+#    #+#             */
+/*   Updated: 2022/02/11 15:21:36 by zihirri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG
 # define SO_LONG
 
@@ -26,16 +38,16 @@ typedef struct	s_vars {
 	int		fd;
 	char	*str;
 	char	**tab;
-	char	**tab2;
 	int		n;
 	int		m;
-	int		t; //y
-	int		w; //x
+	int		t;
+	int		w;
 	int		p;
 	int		o;
 	int		s;
 	int		doorx;
-	int		doory; 
+	int		doory;
+	
 	}				t_vars;
 
 typedef struct s_map
@@ -47,7 +59,6 @@ typedef struct s_map
 	char *s2;
 }		t_map;
 
-int raja, wac;
 
 char    *get_next_line(int  fd);
 char	*ft_strjoin(char *s1, char c);
