@@ -6,12 +6,11 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:25 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/10 19:19:25 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/12 19:00:45 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void    map_maker_macro(char *str, t_vars *vars, int n, int m)
 {
@@ -45,6 +44,8 @@ void    map_maker_macro(char *str, t_vars *vars, int n, int m)
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
 				mlx_put_image_to_window(vars->mlx, vars->win , vars->dimg, n, m);
 			}
+			else if (str[i] == 'N')
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->eimg, n ,m);
 			i++;
 			n += 75;
 		}

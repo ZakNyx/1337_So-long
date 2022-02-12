@@ -6,7 +6,7 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:12 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/10 19:19:12 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/12 16:03:17 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	check_line(char	*s, int a)
 	while (s[i])
 	{
 		if (s[i] != 'C' && s[i] != 'E' && s[i] != 'P'
-			&& s[i] != '0' && s[i] != '1' && s[i] != 'K')
+			&& s[i] != '0' && s[i] != '1' && s[i] != 'K' && s[i] != 'N')
 		{
-			write (2, "unkown ellement in the map", 27);
+			write (2, "unkown element in the map", 26);
 			exit (0);
 		}
 		i++;
@@ -83,6 +83,7 @@ static void	loop(t_map *map, int fd)
 			exit (0);
 		}
 		map->check = check_elements(map->s1, map->a);
+		free(map->s2);
 		map->s2 = map->s1;
 		map->s1 = get_next_line(fd);
 	}
@@ -93,6 +94,7 @@ int	check_map(int fd)
 	t_map	map;
 
 	map.s1 = get_next_line(fd);
+	map.s2 = ft_strdup("");
 	map.a = ft_strlen(map.s1);
 	check_1(map.s1);
 	loop(&map, fd);
@@ -107,5 +109,7 @@ int	check_map(int fd)
 		write (2, "one or more ellements are missing", 34);
 		exit (0);
 	}
+	free(map.s1);
+	free(map.s2);
 	return (map.a);
 }

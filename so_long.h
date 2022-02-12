@@ -6,7 +6,7 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:02 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/11 15:21:36 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/12 18:25:08 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <mlx.h>
 # include <stdio.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 typedef struct	s_vars {
 	void	*mlx;
@@ -30,6 +30,7 @@ typedef struct	s_vars {
 	void	*cimg;
 	void	*limg;
 	void	*oimg;
+	void	*eimg;
 	int		x;
 	int		y;
 	int 	a;
@@ -47,7 +48,7 @@ typedef struct	s_vars {
 	int		s;
 	int		doorx;
 	int		doory;
-	
+	int		steps;
 	}				t_vars;
 
 typedef struct s_map
@@ -71,5 +72,6 @@ void    move_up(t_vars *vars);
 void    move_left(t_vars *vars);
 int 	coin_checker(t_vars *vars);
 void    map_maker_macro(char *str, t_vars *vars, int n, int m);
+char    *ft_itoa(int n);
 
 #endif
