@@ -6,13 +6,13 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:15 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/10 19:19:15 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/13 17:43:54 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
- size_t	ft_strlen(const char *c)
+size_t	ft_strlen(const char *c)
 {
 	int	i;
 
@@ -24,7 +24,7 @@
 	return (i);
 }
 
- void	ft_strcat(char	*s1, char	*s2)
+void	ft_strcat(char *s1, char *s2)
 {
 	int	i;
 	int	j;
@@ -49,7 +49,7 @@ char	*ft_strjoin(char *s1, char c)
 	if (!s1)
 		return (NULL);
 	s1l = ft_strlen(s1);
-	s = (char *) malloc (sizeof (char) * (s1l + 2));
+	s = (char *)malloc(sizeof(char) * (s1l + 2));
 	if (!s)
 		return (NULL);
 	s[0] = '\0';
@@ -66,7 +66,7 @@ char	*ft_strjoin(char *s1, char c)
 	return (s);
 }
 
-static void	ft_strcpy(char	*s1, const char	*s2)
+static void	ft_strcpy(char *s1, const char *s2)
 {
 	int	i;
 
@@ -79,16 +79,15 @@ static void	ft_strcpy(char	*s1, const char	*s2)
 	s1[i] = '\0';
 }
 
-char	*ft_strdup(const char	*s1)
+char	*ft_strdup(const char *s1)
 {
 	int		i;
 	char	*scpy;
 
 	i = ft_strlen(s1);
-	scpy = (char *) malloc (sizeof (char) * (i + 1));
+	scpy = (char *)malloc(sizeof(char) * (i + 1));
 	if (!scpy)
 		return (NULL);
 	ft_strcpy(scpy, s1);
 	return (scpy);
 }
-

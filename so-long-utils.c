@@ -5,48 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 19:19:25 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/12 19:00:45 by zihirri          ###   ########.fr       */
+/*   Created: 2022/02/13 15:18:33 by zihirri           #+#    #+#             */
+/*   Updated: 2022/02/13 17:40:38 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    map_maker_macro(char *str, t_vars *vars, int n, int m)
+int	window_width(char *s)
 {
-    int i;
-    
-    i = 0;
-    while(str[i])
+	t_vars	vars;
+
+	vars.fd = open(s, O_RDONLY);
+	if (vars.fd < 0)
+	{
+		perror("ERROR ");
+		exit(1);
+	}
+	return (check_map(vars.fd));
+}
+
+int	window_height(char *s)
+{
+	t_vars	vars;
+
+	vars.fd = open(s, O_RDONLY);
+	vars.str = get_next_line(vars.fd);
+	vars.y = 0;
+	while (vars.str != NULL)
+	{
+		vars.y = vars.y + 75;
+		free(vars.str);
+		vars.str = get_next_line(vars.fd);
+	}
+	return (vars.y);
+}
+
+int	number_line(char *s)
+{
+	t_vars	vars;
+
+	vars.fd = open(s, O_RDONLY);
+	vars.str = get_next_line(vars.fd);
+	vars.x = 0;
+	vars.y = 0;
+	while (vars.str)
+	{
+		vars.x++;
+		free(vars.str);
+		vars.str = get_next_line(vars.fd);
+	}
+	return (vars.x);
+}
+
+int	find_position_index(char **tab)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (tab[j])
+	{
+		while (tab[j][i])
 		{
-			if (str[i] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, n, m);
-			else if (str[i] == '0')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
-			else if (str[i] == 'C')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->cimg, n, m);
-			}
-			else if (str[i] == 'P')
-			{
-				if (vars->w == 0 && vars->t == 0)
-				{
-					vars->w = n;
-					vars->t = m;
-				}
-				mlx_put_image_to_window(vars->mlx, vars->win , vars->img, n, m);
-			}
-			else if (str[i] == 'E')
-			{
-				vars->doorx = n;
-				vars->doory = m;
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
-				mlx_put_image_to_window(vars->mlx, vars->win , vars->dimg, n, m);
-			}
-			else if (str[i] == 'N')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->eimg, n ,m);
+			if (tab[j][i] == 'P')
+				return (i);
 			i++;
-			n += 75;
 		}
+		i = 0;
+		j++;
+	}
+	return (0);
+}
+
+int	find_position_line(char **tab)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (tab[j])
+	{
+		while (tab[j][i])
+		{
+			if (tab[j][i] == 'P')
+				return (j);
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+	return (0);
 }

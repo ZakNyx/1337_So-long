@@ -6,13 +6,13 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:12 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/12 16:03:17 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/13 17:45:57 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_1(char	*s)
+void	check_1(char *s)
 {
 	int	a;
 
