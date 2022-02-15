@@ -6,11 +6,11 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:12 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/13 17:45:57 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/14 23:22:53 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	check_1(char *s)
 {
@@ -41,7 +41,7 @@ void	check_line(char	*s, int a)
 	while (s[i])
 	{
 		if (s[i] != 'C' && s[i] != 'E' && s[i] != 'P'
-			&& s[i] != '0' && s[i] != '1' && s[i] != 'K' && s[i] != 'N')
+			&& s[i] != '0' && s[i] != '1' && s[i] != 'K')
 		{
 			write (2, "unkown element in the map", 26);
 			exit (0);

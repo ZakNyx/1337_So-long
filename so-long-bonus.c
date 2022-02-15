@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so-long.c                                          :+:      :+:    :+:   */
+/*   so-long-bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:18:59 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/15 15:10:37 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/15 18:24:29 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 char	**ft_wall(char **tab, char *s)
 {
@@ -116,9 +116,11 @@ int	main(int ac, char **av)
 		vars.y = window_height(av[1]);
 		vars.win = mlx_new_window(vars.mlx, vars.x, vars.y, "Have Fun");
 		sprites(&vars);
+		sprites_animation(&vars);
 		map_maker(&vars, av[1]);
 		vars.tab = number(&vars, av[1]);
 		mlx_key_hook(vars.win, key_hook, &vars);
+		mlx_loop_hook(vars.mlx, loop_hook, &vars);
 		mlx_hook(vars.win, 17, 0, destroy, &vars);
 		mlx_loop(vars.mlx);
 	}

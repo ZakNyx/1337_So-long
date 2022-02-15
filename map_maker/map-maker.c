@@ -6,11 +6,11 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:25 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/13 19:44:28 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/14 22:11:16 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	print_elem(char c, int n, int m, t_vars *vars)
 {
@@ -72,8 +72,6 @@ void	map_maker_macro(char *str, t_vars *vars, int n, int m)
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, n, m);
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->dimg, n, m);
 		}
-		if (str[i] == 'N')
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->eimg, n, m);
 		i++;
 		n += 75;
 	}
@@ -102,6 +100,4 @@ void	sprites(t_vars *vars)
 			"./sprites/closeddoor.xpm", &vars->x, &vars->y);
 	vars->oimg = mlx_xpm_file_to_image(vars->mlx,
 			"./sprites/opendoor.xpm", &vars->x, &vars->y);
-	vars->eimg = mlx_xpm_file_to_image(vars->mlx,
-			"./sprites/enemy.xpm", &vars->x, &vars->y);
 }

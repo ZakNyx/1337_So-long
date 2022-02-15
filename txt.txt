@@ -1,4 +1,0 @@
-right   124
-down    125
-left    123
-up      126

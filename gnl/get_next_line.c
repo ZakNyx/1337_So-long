@@ -6,11 +6,11 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:18 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/13 17:39:53 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:37:12 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 char	*get_next_line(int fd)
 {

@@ -6,11 +6,11 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:15 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/13 17:43:54 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:36:42 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 size_t	ft_strlen(const char *c)
 {

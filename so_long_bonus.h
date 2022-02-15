@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zihirri <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 19:19:02 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/14 23:19:35 by zihirri          ###   ########.fr       */
+/*   Created: 2022/02/15 19:54:30 by zihirri           #+#    #+#             */
+/*   Updated: 2022/02/15 19:55:54 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <stdlib.h>
 # include <string.h>
@@ -19,9 +19,9 @@
 # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include <stdarg.h>
 
 typedef struct s_vars {
+	int		ot;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -31,15 +31,22 @@ typedef struct s_vars {
 	void	*cimg;
 	void	*limg;
 	void	*oimg;
+	void	*eimg;
 	void	*odimg;
+	void	*img1;
+	void	*img2;
+	void	*img3;
+	void	*img4;
+	void	*img5;
+	void	*img6;	
+	char	*str;
+	char	**tab;
 	int		x;
 	int		y;
 	int		a;
 	int		i;
 	int		b;
 	int		fd;
-	char	*str;
-	char	**tab;
 	int		n;
 	int		m;
 	int		t;
@@ -87,7 +94,13 @@ void	move_up_extention(t_vars *vars);
 void	move_left_extention(t_vars *vars);
 void	move_count_left(t_vars *vars);
 void	move_count(t_vars *vars);
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
+void	move_right_ondoor(t_vars *vars);
+void	sprites_animation(t_vars *vars);
+void	ft_animation(t_vars *vars);
+int		loop_hook(t_vars *vars);
+void	print_img5(t_vars *vars);
+void	print_img6(t_vars *vars);
+void	print_img4(t_vars *vars);
+void	print_img3(t_vars *vars);
 
 #endif

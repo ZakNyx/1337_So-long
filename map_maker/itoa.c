@@ -6,11 +6,11 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:12:32 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/13 15:57:34 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:40:28 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	*ft_calloc(size_t n, size_t c)
 {

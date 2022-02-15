@@ -6,18 +6,18 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:01 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/13 18:46:30 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/15 19:56:20 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	move_count(t_vars *vars)
 {
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, vars->w, vars->t);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, vars->w, vars->t);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, 0, 0);
-	mlx_string_put(vars->mlx, vars->win, 0, 30, 0xFFFFFF, ft_itoa(vars->steps));
+	ft_putnbr(vars->steps);
+	write(1, "\n", 1);
 }
 
 void	move_right(t_vars *vars)

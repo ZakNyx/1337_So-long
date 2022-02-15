@@ -6,11 +6,11 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 16:52:14 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/13 17:32:21 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/15 19:57:22 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	move_right_extention(t_vars *vars)
 {
@@ -29,11 +29,6 @@ void	move_right_extention(t_vars *vars)
 			vars->gimg, vars->w, vars->t);
 		vars->w += 75;
 		move_count(vars);
-		if (vars->tab[vars->s][vars->n] == 'N')
-		{
-			write(1, "GAME OVER !", 12);
-			exit(1);
-		}
 	}
 }
 
@@ -54,11 +49,6 @@ void	move_down_extention(t_vars *vars)
 			vars->gimg, vars->w, vars->t);
 		vars->t += 75;
 		move_count(vars);
-		if (vars->tab[vars->s][vars->n] == 'N')
-		{
-			write(1, "GAME OVER !", 12);
-			exit(1);
-		}
 	}
 }
 
@@ -79,11 +69,6 @@ void	move_up_extention(t_vars *vars)
 			vars->gimg, vars->w, vars->t);
 		vars->t -= 75;
 		move_count(vars);
-		if (vars->tab[vars->s][vars->n] == 'N')
-		{
-			write(1, "GAME OVER !", 12);
-			exit(1);
-		}
 	}
 }
 
@@ -104,11 +89,6 @@ void	move_left_extention(t_vars *vars)
 			vars->gimg, vars->w, vars->t);
 		vars->w -= 75;
 		move_count_left(vars);
-		if (vars->tab[vars->s][vars->n] == 'N')
-		{
-			write(1, "GAME OVER !", 12);
-			exit(1);
-		}
 	}
 }
 
@@ -116,6 +96,6 @@ void	move_count_left(t_vars *vars)
 {
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->gimg, vars->w, vars->t);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->limg, vars->w, vars->t);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->wimg, 0, 0);
-	mlx_string_put(vars->mlx, vars->win, 0, 30, 0xFFFFFF, ft_itoa(vars->steps));
+	ft_putnbr(vars->steps);
+	write(1, "\n", 1);
 }
