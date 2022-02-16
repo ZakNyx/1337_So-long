@@ -6,7 +6,7 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:01 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/15 19:56:20 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/16 18:23:06 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	move_count(t_vars *vars)
 
 void	move_right(t_vars *vars)
 {
-	vars->steps++;
 	vars->x = coin_checker(vars);
 	if (vars->x == 0)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->oimg,
@@ -38,7 +37,6 @@ void	move_right(t_vars *vars)
 
 void	move_down(t_vars *vars)
 {
-	vars->steps++;
 	vars->x = coin_checker(vars);
 	if (vars->x == 0)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->oimg,
@@ -54,7 +52,6 @@ void	move_down(t_vars *vars)
 
 void	move_up(t_vars *vars)
 {
-	vars->steps++;
 	vars->x = coin_checker(vars);
 	if (vars->x == 0)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->oimg,
@@ -70,7 +67,6 @@ void	move_up(t_vars *vars)
 
 void	move_left(t_vars *vars)
 {
-	vars->steps++;
 	vars->x = coin_checker(vars);
 	if (vars->x == 0)
 		mlx_put_image_to_window(vars->mlx, vars->win,

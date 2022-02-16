@@ -6,7 +6,7 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 16:52:14 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/15 19:57:22 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/16 18:22:33 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	move_right_extention(t_vars *vars)
 	if (vars->tab[vars->s][vars->n + 1] != '1'
 			&& vars->tab[vars->s][vars->n + 1] != 'E')
 	{
+		vars->steps++;
 		vars->n++;
 		if (vars->tab[vars->s][vars->n] == 'C')
 		{
@@ -37,6 +38,7 @@ void	move_down_extention(t_vars *vars)
 	if (vars->tab[vars->s + 1][vars->n] != '1' &&
 			vars->tab[vars->s + 1][vars->n] != 'E')
 	{
+		vars->steps++;
 		vars->s++;
 		if (vars->tab[vars->s][vars->n] == 'C')
 		{
@@ -57,6 +59,7 @@ void	move_up_extention(t_vars *vars)
 	if (vars->tab[vars->s - 1][vars->n] != '1' &&
 			vars->tab[vars->s - 1][vars->n] != 'E')
 	{
+		vars->steps++;
 		vars->s--;
 		if (vars->tab[vars->s][vars->n] == 'C')
 		{
@@ -77,6 +80,7 @@ void	move_left_extention(t_vars *vars)
 	if (vars->tab[vars->s][vars->n - 1] != '1' &&
 			vars->tab[vars->s][vars->n - 1] != 'E')
 	{
+		vars->steps++;
 		vars->n--;
 		if (vars->tab[vars->s][vars->n] == 'C')
 		{

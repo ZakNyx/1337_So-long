@@ -6,7 +6,7 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 15:18:33 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/14 19:05:00 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/16 19:08:49 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	window_width(char *s)
 	vars.fd = open(s, O_RDONLY);
 	if (vars.fd < 0)
 	{
-		perror("ERROR ");
+		perror("ERROR\n");
 		exit(1);
 	}
 	return (check_map(vars.fd));

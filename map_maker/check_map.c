@@ -6,7 +6,7 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:19:12 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/14 23:22:53 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/16 18:58:59 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_1(char *s)
 	{
 		if (s[a] != '1')
 		{
-			write (2, "first or last line isn't made of only walls", 44);
+			write (2, "ERROR\nfirst or last line isn't made of only walls", 50);
 			exit (0);
 		}
 		a++;
@@ -35,7 +35,7 @@ void	check_line(char	*s, int a)
 	i = 0;
 	if (s[0] != '1' || s[a - 1] != '1')
 	{
-		write (2, "side walls don't exist", 23);
+		write (2, "ERROR\nside walls don't exist", 29);
 		exit (0);
 	}
 	while (s[i])
@@ -43,7 +43,7 @@ void	check_line(char	*s, int a)
 		if (s[i] != 'C' && s[i] != 'E' && s[i] != 'P'
 			&& s[i] != '0' && s[i] != '1' && s[i] != 'K')
 		{
-			write (2, "unkown element in the map", 26);
+			write (2, "ERROR\nunkown element in the map", 32);
 			exit (0);
 		}
 		i++;
@@ -79,7 +79,7 @@ static void	loop(t_map *map, int fd)
 		map->b = ft_strlen(map->s1);
 		if (map->a != map->b)
 		{
-			write (2, "map is not rectangular", 23);
+			write (2, "ERROR\nmap is not rectangular", 29);
 			exit (0);
 		}
 		map->check = check_elements(map->s1, map->a);
@@ -100,13 +100,13 @@ int	check_map(int fd)
 	loop(&map, fd);
 	if (map.a != map.b)
 	{
-		write (2, "map is not rectangular", 23);
+		write (2, "ERROR\nmap is not rectangular", 29);
 		exit (0);
 	}
 	check_1(map.s2);
 	if (map.check != 10)
 	{
-		write (2, "one or more ellements are missing", 34);
+		write (2, "ERROR\none or more ellements are missing", 40);
 		exit (0);
 	}
 	free(map.s1);

@@ -6,7 +6,7 @@
 /*   By: zihirri <zihirri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 19:18:59 by zihirri           #+#    #+#             */
-/*   Updated: 2022/02/15 15:10:37 by zihirri          ###   ########.fr       */
+/*   Updated: 2022/02/16 19:28:29 by zihirri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		write(1, "ENTER A VALID MAP! \n", 21);
+		write(1, "ERROR\nENTER A VALID MAP! \n", 27);
 		exit(1);
 	}
 }
